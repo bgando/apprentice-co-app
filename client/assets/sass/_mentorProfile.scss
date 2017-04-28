@@ -1,0 +1,84 @@
+div.mentor-profile {
+
+  div.picture-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  h4.mentor-name {
+    margin-left: 10px;
+  }
+
+  div.fixed-height {
+    height: 250px;
+    overflow: auto;
+  }
+
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  button.btn-global {
+    margin: 10px 15px;
+    width: 215px;
+  }
+
+  div.btn-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+  }
+
+  span.review-date {
+    color: #999;
+    margin-left: 0px;
+  }
+
+  .left-card {
+    padding-right: 7.5px;
+  }
+
+  .left-card-compensate {
+    padding-right: 15px;
+  }
+
+  .right-card {
+    padding-left: 7.5px;
+  }
+
+  i.fa {
+    margin-left: 5px;
+  }
+
+  .mentor-meta {
+    text-align: center;
+    padding: 8px 20px;
+    display: block;
+    border: 1px solid $accent-red;
+    color: $accent-red;
+    border-radius: none;
+    background: $white;
+    width: 250px;
+  }
+
+  .mentor-meta {
+    margin-left: 20px;
+  }
+
+  .mentor-meta:first-child {
+    margin-left: 0;
+  }
+
+}

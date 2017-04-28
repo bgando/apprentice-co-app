@@ -1,0 +1,12 @@
+/node_modules
+bundle.js
+bundle.js.map
+npm-debug.log
+server/.DS_Store
+server/.env
+.config
+.env
+/.idea
+/client/assets/css
+/client/assets/video
+config/*

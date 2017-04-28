@@ -1,0 +1,138 @@
+.navbar {
+
+  #logo {
+    width: 150px;
+  }
+
+  button {
+    background: none;
+    color: $accent-red;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul {
+    margin-top: 5px;
+  }
+
+  li.nav-item {
+      border-right: 1px solid $secondary-graylight;
+      padding-right: 16px;
+      height: 38px;
+  }
+
+  li.nav-item:last-child {
+      border-right: none;
+      padding-right: none;
+  }
+  a:hover {
+    color:$accent-darkred
+  }
+
+  img {
+    width: 25px;
+  }
+
+  i.fa {
+    font-size: 1.4em;
+  }
+
+  i.fa-comments-o {
+    margin-top: 4px;
+    animation: pulse 1s infinite;
+  }
+
+  i.fa-comments-o.none {
+    margin-top: 4px;
+    animation: none;
+  }
+
+  @keyframes pulse {
+  	0% { transform: scale(1); }
+  	30% { transform: scale(1); }
+  	40% { transform: scale(1.08); }
+  	50% { transform: scale(1); }
+  	60% { transform: scale(1); }
+  	70% { transform: scale(1.05); }
+  	80% { transform: scale(1); }
+  	100% { transform: scale(1); }
+  }
+
+  #dropdown-no-caret::after {
+    display: none;
+  }
+
+  .dropdown-menu {
+    padding: 0px;
+    height: 250px;
+    width: 200px;
+    margin-top: 5px;
+    overflow-y: scroll;
+    border-radius: 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+
+    li {
+      padding: 6px 8px;
+      border-bottom: 1px solid $bootstrap-gray;
+    }
+
+    li a {
+      display: flex;
+      flex-flow: row no-wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    li div {
+      display: block;
+    }
+
+    li:first-child {
+      padding: 5px 8px;
+      color: black;
+      font-size: 12px;
+      a {
+        color: $input-gray;
+      }
+    }
+
+    li:first-child:hover {
+      background-color: transparent;
+    }
+
+    li {
+      padding: 6px 8px;
+      border-bottom: 1px solid $bootstrap-gray;
+    }
+
+    li:hover {
+      background-color: #eee;
+    }
+
+    i.fa-comment-o {
+      color: inherit;
+      font-size: 16px;
+      margin-left: 5px;
+    }
+
+    i.fa-circle {
+      color: lightgreen;
+      font-size: 16px;
+    }
+
+  }
+
+  .dropdown-menu::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 10px;
+  }
+
+  .dropdown-menu::-webkit-scrollbar-thumb {
+    background-color: $bootstrap-gray;
+  }
+
+  .dropdown-menu::-webkit-scrollbar-track {
+    background-color: #eee;
+  }
+
+}
