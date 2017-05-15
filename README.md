@@ -1,6 +1,6 @@
-# **MENTOR ME**
+# **Apprentice Co.**
 
-[www.getmentor.me](https://getmentor.me)
+[www.theApprentice.co](https://theApprentice.co)
 
 [API Documentation](https://dl.dropboxusercontent.com/u/106304615/MentorMeDocumentation.pdf)
 
@@ -29,11 +29,10 @@
 + React-Bootstrap
 + Twilio
 
-### Background
+### The Product
 
-Mentor Me is a platform for learners and mentors to connect with each other. This full-scale web app was largely inspired by our team's experience at MakerSquare and all the wonderful benefits of the effective mentorship we found during out time there. With Mentor Me, people are able to find and connect with willing and able teachers. Or, on the flip side, people itching to give back can sign up for a mentoring account.
+Apprentice Co. is a platform that lets amazing mentors conduct intentional apprenticeships with learners looking to advance their career. The platform incoporates features to organize cohorts, create accountability, facilitate communication and collect payments. 
 
-## The Mentor Me Team
-* [Chadd Bennett](https://github.com/chaddbennett)
-* [Maximillian Einstein](https://github.com/meinstein)
-* [Marco Berardini](https://github.com/mb0606)
+## Apprentice Co. Team
+* [Ryan Stellar](https://github.com/rstellar)
+
