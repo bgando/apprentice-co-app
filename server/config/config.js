@@ -1,12 +1,10 @@
-var path = require('path');
 
 module.exports = {
-  database      : 'mentor-me',
-  user          : 'mentormeadmin',
-  password      : '!password',
-  server        : 'mentorme.marcoberardini.com',
-  charset       : 'utf8',
-  pgUri         : 'postgres://admin:CFWETLFSFBHHKHVM@aws-us-east-1-portal.9.dblayer.com:11191/compose',
-  sessionSecret : 'anystringoftext'
-
+  database: 'apprentice_co_dev',
+  username: 'rstellar',
+  password: 'password',
+  host: 'apprenticeco.cxy5uyddwrw4.us-west-2.rds.amazonaws.com',
+  port: '5432',
+  dialect: 'postgres',
+  sessionSecret: 'foobar',
 };

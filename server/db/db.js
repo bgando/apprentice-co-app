@@ -6,15 +6,15 @@ var config      = require('../config/config');
 var configAuth  = require('../config/auth');
 var jwt         = require('jwt-simple');
 
-var sequelize = new Sequelize(config.pgUri);
+var sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 
 sequelize
   .authenticate()
-  .then(function(err) {
+  .then(function (err) {
     console.log('Connection has been established successfully.');
   })
-  .catch(function(err) {
+  .catch(function (err) {
     console.log('Unable to connect to the database:', err);
   });
 
@@ -26,10 +26,10 @@ sequelize
 var Role = sequelize.define('Role', {
   type         : Sequelize.STRING,
 
-  },{
-   tableName :'Roles', // this will define the table's name
-   timestamps: false   // this will activate the timestamp columns
- });
+},{
+    tableName :'Roles', // this will define the table's name
+    timestamps: false   // this will activate the timestamp columns
+  });
 
 
 ///////////////////////////////////////////////////
@@ -37,55 +37,55 @@ var Role = sequelize.define('Role', {
 ///////////////////////////////////////////////////
 
 var User = sequelize.define('User', {
-    username           :  {
+  username           :  {
       type: Sequelize.STRING,
-          unique   : true,
-          allowNull: false,
-          validate : {
-              notEmpty: true
+      unique   : true,
+      allowNull: false,
+      validate : {
+            notEmpty: true
           }
     },
-    firstname          : Sequelize.STRING,
-    lastname           : Sequelize.STRING,
-    phone              : Sequelize.STRING,
-    skype_name         : Sequelize.STRING,
-    city               : Sequelize.STRING,
-    zip                : {
+  firstname          : Sequelize.STRING,
+  lastname           : Sequelize.STRING,
+  phone              : Sequelize.STRING,
+  skype_name         : Sequelize.STRING,
+  city               : Sequelize.STRING,
+  zip                : {
       type: Sequelize.STRING,
-        validate: {
+      validate: {
           notEmpty : true
         }
     },
-    primary_role       : Sequelize.STRING,
-    secondary_role     : Sequelize.STRING,
-    rating             : Sequelize.INTEGER,
-    reviewCount        : Sequelize.INTEGER,
-    total_appointments : Sequelize.INTEGER,
-    rate               : Sequelize.REAL,
-    description        : Sequelize.TEXT,
-    availability       : Sequelize.BOOLEAN,
-    lastLogIn          : Sequelize.DATE,
-    totalVisit         : Sequelize.INTEGER,
-    email              : {
+  primary_role       : Sequelize.STRING,
+  secondary_role     : Sequelize.STRING,
+  rating             : Sequelize.INTEGER,
+  reviewCount        : Sequelize.INTEGER,
+  total_appointments : Sequelize.INTEGER,
+  rate               : Sequelize.REAL,
+  description        : Sequelize.TEXT,
+  availability       : Sequelize.BOOLEAN,
+  lastLogIn          : Sequelize.DATE,
+  totalVisit         : Sequelize.INTEGER,
+  email              : {
       type: Sequelize.STRING,
-          allowNull: false,
-          unique   : true,
-          validate :{
-              isEmail : true,
-              notEmpty: true
-      }
+      allowNull: false,
+      unique   : true,
+      validate :{
+            isEmail : true,
+            notEmpty: true
+          }
     },
-    salt: {
+  salt: {
       type: Sequelize.STRING
     },
-    passwordHash: {
+  passwordHash: {
       type: Sequelize.STRING
     },
-    password  : {
+  password  : {
       type: Sequelize.VIRTUAL,
       allowNull: false,
       validate: {
-          len: [7,100]
+        len: [7,100]
       },
       set: function(value){
         var salt = bcrypt.genSaltSync(10);
@@ -96,20 +96,20 @@ var User = sequelize.define('User', {
         this.setDataValue('passwordHash', hashedPassword);
       }
     },
-  },{
+},{
     tableName :'', // this will define the table's name
     timestamps: true ,  // this will activate the timestamp columns
     hooks: {
       beforeValidate: function(user, options){
-           if(typeof user.email === 'string'){
-               user.email = user.email.toLowerCase();
-        }
+        if(typeof user.email === 'string'){
+             user.email = user.email.toLowerCase();
+           }
       }
     },
     instanceMethods: {
-    generateToken: function(type){
+      generateToken: function(type){
       if(!_.isString(type)){
-          return undefined;
+        return undefined;
       }
       try {
         var timeStamp = new Date().getTime();
@@ -119,8 +119,8 @@ var User = sequelize.define('User', {
         return undefined;
       }
     }
-  }
-});
+    }
+  });
 
 ///////////////////////////////////////////////////
 ///////////          REVIEWS         //////////////
@@ -129,25 +129,25 @@ var User = sequelize.define('User', {
 var Review = sequelize.define('Review', {
   content      : Sequelize.TEXT,
   rating       : Sequelize.INTEGER
-  },{
+},{
     tableName :'Reviews', // this will define the table's name
     timestamps: true      // this will activate the timestamp columns
- });
+  });
 
  ///////////////////////////////////////////////////
  ///////////       CONVERSATIONS      //////////////
  ///////////////////////////////////////////////////
 
- var Conversation = sequelize.define('Conversation', {
-    name   : {
+var Conversation = sequelize.define('Conversation', {
+   name   : {
       type: Sequelize.STRING,
       unique   : true
     },
-    private: Sequelize.BOOLEAN
-  },{
+   private: Sequelize.BOOLEAN
+ },{
     tableName: 'Conversations', // this will define the table's name
     timestamps: true      // this will activate the timestamp columns
-});
+  });
 
 ///////////////////////////////////////////////////
 ///////////        MESSAGES          //////////////
@@ -156,10 +156,10 @@ var Review = sequelize.define('Review', {
 var Message = sequelize.define('Message', {
   content: Sequelize.TEXT,
   read   : Sequelize.BOOLEAN
-  },{
+},{
     tableName: 'Messages', // this will define the table's name
     timestamps: true      // this will activate the timestamp columns
-});
+  });
 
 ///////////////////////////////////////////////////
 ///////////          SKILLS          //////////////
@@ -168,10 +168,10 @@ var Message = sequelize.define('Message', {
 
 var Skill = sequelize.define('Skill', {
   title: Sequelize.STRING,
-  },{
+},{
     tableName: 'Skills', // this will define the table's name
     timestamps: true      // this will activate the timestamp columns
-});
+  });
 
 ///////////////////////////////////////////////////
 ///////////       SKILLS LEVEL       //////////////
@@ -180,10 +180,10 @@ var Skill = sequelize.define('Skill', {
 
 var SkillLevel = sequelize.define('SkillLevel', {
   title: Sequelize.STRING,
-  },{
+},{
     tableName: 'SkillLevels', // this will define the table's name
     timestamps: true      // this will activate the timestamp columns
-});
+  });
 
 
 ///////////////////////////////////////////////////
@@ -192,26 +192,26 @@ var SkillLevel = sequelize.define('SkillLevel', {
 
 var Preference = sequelize.define('Preference', {
   visual     : {
-                type:Sequelize.BOOLEAN,
-                defaultValue: false
-              },
+    type:Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   academic   : {
-                type:Sequelize.BOOLEAN,
-                defaultValue: false
-              },
+    type:Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   remote     : {
-                type:Sequelize.BOOLEAN,
-                defaultValue: false
-              },
+    type:Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   inPerson   : {
-                type:Sequelize.BOOLEAN,
-                defaultValue: false
-              },
+    type:Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   radiusZip  : Sequelize.STRING,
-  },{
+},{
     tableName: 'Preferences', // this will define the table's name
     timestamps: true      // this will activate the timestamp columns
-});
+  });
 
 ///////////////////////////////////////////////////
 ///////////         QUALITIES        //////////////
@@ -219,25 +219,25 @@ var Preference = sequelize.define('Preference', {
 
 var Quality = sequelize.define('Quality', {
   visual     : {
-                type:Sequelize.BOOLEAN,
-                defaultValue: false
-              },
+    type:Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   academic   : {
-                type:Sequelize.BOOLEAN,
-                defaultValue: false
-              },
+    type:Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   remote     : {
-                type:Sequelize.BOOLEAN,
-                defaultValue: false
-              },
+    type:Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   inPerson   : {
-                type:Sequelize.BOOLEAN,
-                defaultValue: false
-              }
-  },{
+    type:Sequelize.BOOLEAN,
+    defaultValue: false
+  }
+},{
     tableName: 'Qualities', // this will define the table's name
     timestamps: true      // this will activate the timestamp columns
-});
+  });
 
 ///////////////////////////////////////////////////
 ///////////        Categories        //////////////
@@ -245,10 +245,10 @@ var Quality = sequelize.define('Quality', {
 
 var Category = sequelize.define('Category', {
   title: Sequelize.STRING
-  },{
+},{
     tableName: 'Categories', // this will define the table's name
     timestamps: true      // this will activate the timestamp columns
-});
+  });
 
 ///////////////////////////////////////////////////
 ///////////       Appointment        //////////////
@@ -261,10 +261,10 @@ var Appointment = sequelize.define('Appointment', {
   endTime    : Sequelize.DATE,
   location   : Sequelize.TEXT,
 
-  },{
+},{
     tableName: 'Appointments', // this will define the table's name
     timestamps: true      // this will activate the timestamp columns
-});
+  });
 
 
 User.hasMany(Skill, {foreignKey: 'mentorId'});
@@ -291,14 +291,20 @@ User.hasOne(Preference, {foreignKey: 'learnerId'});
 Conversation.hasMany(Message, {foreignKey: 'conversationId'});
 User.hasMany(Message, {foreignKey: 'userId'});
 
-// sequelize.sync().then(function(){
-//    console.log("Created tables in db.js");
-// });
+sequelize.sync({
+  //logging: console.log
+}
+).then(function(){
+  console.log("db.js ::: Sequelize sync ran");
+});
 
 // will drop the tables and init them
-// sequelize.sync({force:true}).then(function(){
-//    console.log("Created tables in db.js");
-// });
+/*sequelize.sync({
+  force:true,
+  logging: console.log
+}).then(function(){
+   console.log("db.js:::created db tables");
+});*/
 
 /// Exports to models
 exports.User         = User;
