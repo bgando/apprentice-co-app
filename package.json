@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Mentors on demand",
   "main": "./server/server.js",
+    "engines": {
+    "node": "6.X"
+  },
   "scripts": {
     "lint": "eslint client/components client/reducers client/actions --fix",
     "webpack": "./node_modules/webpack/bin/webpack.js",
