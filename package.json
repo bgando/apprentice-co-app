@@ -51,6 +51,7 @@
     "passport-linkedin": "^1.0.0",
     "path": "^0.12.7",
     "react-dom": "^15.3.0",
+    "react-redux": "^4.4.8",
     "sequelize": "^3.23.6",
     "socket.io": "^1.4.8",
     "twilio": "^2.9.1",
