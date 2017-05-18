@@ -2,7 +2,7 @@ module.exports = {
   devtool: 'source-map',
   entry: './client/index.js',
   output: {
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   watch: true,
   module: {
@@ -11,10 +11,10 @@ module.exports = {
         exclude: /(node_modules|server)/,
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015']
-        }
-      }
-    ]
-  }
+          presets: ['react', 'es2015', 'stage-1'],
+        },
+      },
+    ],
+  },
 
 };

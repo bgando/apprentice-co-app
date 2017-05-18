@@ -1,27 +1,27 @@
-var express       = require('express');
-var bodyParser    = require('body-parser');
-var moment        = require('moment');
-var app           = express();
-var morgan        = require('morgan');
-var path          = require('path');
-var jwt           = require('jsonwebtoken');
-var http          = require('http');
-var https         = require('https');
-var formidable    = require('formidable');
-var mentorsRoutes = require("./routes/mentors");
-var learnerRoutes = require("./routes/learners");
-var authRoutes    = require('./routes/auth');
-var conversationRoutes  = require('./routes/conversation')
-var messageRoutes  = require('./routes/message')
-var db            = require('./db/db.js');
-var passport      = require('passport');
-var cookieParser  = require('cookie-parser');
-var session       = require('express-session');
-var config        = require('./config/config');
+const express = require('express');
+const bodyParser = require('body-parser');
+const moment = require('moment');
+const app = express();
+const morgan = require('morgan');
+const path = require('path');
+const jwt = require('jsonwebtoken');
+const http = require('http');
+const https = require('https');
+const formidable = require('formidable');
+const mentorsRoutes = require('./routes/mentors');
+const learnerRoutes = require('./routes/learners');
+const authRoutes = require('./routes/auth');
+const conversationRoutes = require('./routes/conversation');
+const messageRoutes = require('./routes/message');
+const db = require('./db/db.js');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const config = require('./config/config');
 // sockets
 
-var server        = http.createServer(app);
-var socketIo      = require('socket.io')
+const server = http.createServer(app);
+const socketIo = require('socket.io');
 
 // Utilities
 require('./config/passport')(passport);
@@ -41,17 +41,17 @@ app.use('/api', conversationRoutes);
 app.use('/api', messageRoutes);
 
 
-app.get('*', function (request, response){
+app.get('*', (request, response) =>  {
   response.sendFile(path.resolve(__dirname, '../', 'index.html'));
 });
 
 // Sockets
-var io = new socketIo(server)
+let io = new socketIo(server);
 require('./sockets/socketEvents')(io);
 
 app.set('port', process.env.PORT || 3000);
 
-server.listen(app.get('port'), function() {
+server.listen(app.get('port'), () => {
   // db.ensureSchema();
-  console.log(moment().format('h:mm:ss a') + ': Express Server listening on port', app.get('port'));
+  console.log(`${moment().format('h:mm:ss a')  }: Express Server listening on port`, app.get('port'));
 });
