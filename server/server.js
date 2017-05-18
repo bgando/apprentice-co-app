@@ -49,7 +49,8 @@ app.get('*', function (request, response){
 var io = new socketIo(server)
 require('./sockets/socketEvents')(io);
 
-app.set('port', 3000);
+app.set('port', process.env.PORT || 3000);
+
 server.listen(app.get('port'), function() {
   // db.ensureSchema();
   console.log(moment().format('h:mm:ss a') + ': Express Server listening on port', app.get('port'));
