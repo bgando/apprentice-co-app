@@ -14,7 +14,7 @@
     "sass": "gulp run",
     "start": "nodemon ./server/server.js",
     "heroku-prebuild": "echo ::running heroku prebuild -- before depedencies",
-    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js"
+    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress --profile --colors"
   },
   "precommit": [
     "lint"
