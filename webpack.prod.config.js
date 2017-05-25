@@ -7,6 +7,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, ''),
     filename: 'bundle.js',
+    publicPath: path.join(__dirname, ''),
   },
   watch: false,
   module: {
@@ -14,13 +15,13 @@ module.exports = {
       test: /\.css$/,
       use: ['style-loader', 'css-loader'],
     },
-      {
-        exclude: /(node_modules|server)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015', 'stage-1'],
-        },
+    {
+      exclude: /(node_modules|server)/,
+      loader: 'babel-loader',
+      query: {
+        presets: ['react', 'es2015', 'stage-1'],
       },
+    },
     ],
   },
 
