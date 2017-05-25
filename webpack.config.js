@@ -3,6 +3,7 @@ const path = require('path');
 
 module.exports = {
   devtool: 'source-map',
+  context: path.resolve(__dirname, ''),
   entry: [
     'webpack/hot/dev-server',
     'webpack-dev-server/client?http://localhost:8080/',
