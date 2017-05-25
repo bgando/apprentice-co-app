@@ -1,5 +1,5 @@
-let webpack = require('webpack');
-let path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   devtool: 'source-map',
@@ -12,8 +12,13 @@ module.exports = {
     path: __dirname,
     filename: 'bundle.js',
     headers: { 'Access-Control-Allow-Origin': '*' },
+    sourceMapFilename: 'sourceMapsApprentice.map',
   },
   module: {
+    rules: [{
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader'],
+    }],
     loaders: [
       {
         query: {

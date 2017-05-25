@@ -10,6 +10,10 @@ module.exports = {
   },
   watch: false,
   module: {
+    rules: [{
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader'],
+    }],
     loaders: [
       {
         exclude: /(node_modules|server)/,
